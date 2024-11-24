@@ -118,5 +118,5 @@ for summit in sota:
 
 
 # Save or display the map
-m.save('map.html')
+m.save('index.html')
 print("Map saved as 'map.html'")
