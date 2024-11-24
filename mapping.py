@@ -58,7 +58,7 @@ for feature in data['features']:
         location=[float(coordinates[0]), float(coordinates[1])],
         icon=folium.Icon(
             icon="charging-station",
-            color="green",
+            color="black",
             prefix="fa"
         ),
         popup=folium.Popup(popup_info, max_width=300)
