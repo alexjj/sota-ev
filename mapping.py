@@ -1,5 +1,6 @@
 import folium
 import json
+import gpxpy
 from folium.plugins import MarkerCluster
 
 # Load JSON data
@@ -116,6 +117,79 @@ for summit in sota:
         popup=folium.Popup(popup_info, max_width=300)
     ).add_to(m)
 
+# Load car journey
+
+# to Drymen
+# Load the GPX file
+with open('route.gpx', 'r') as f:
+    gpx_data = f.read()
+
+# Parse the GPX data
+gpx = gpxpy.parse(gpx_data)
+first_track = gpx.tracks[0]
+first_segment = first_track.segments[0]
+first_point = first_segment.points[0]
+
+# Extract the coordinates from the GPX file and plot the route
+route = []
+for point in first_segment.points:
+    route.append([point.latitude, point.longitude])
+
+# Plot the route on the map as a PolyLine
+folium.PolyLine(
+    locations=route,  # List of coordinates for the route
+    color="blue",      # Line color
+    weight=5,          # Line thickness
+    opacity=0.7        # Line opacity
+).add_to(m)
+
+
+
+#to Hannah's
+with open('hannah.gpx', 'r') as f:
+    gpx_data = f.read()
+
+# Parse the GPX data
+gpx = gpxpy.parse(gpx_data)
+first_track = gpx.tracks[0]
+first_segment = first_track.segments[0]
+first_point = first_segment.points[0]
+
+# Extract the coordinates from the GPX file and plot the route
+route = []
+for point in first_segment.points:
+    route.append([point.latitude, point.longitude])
+
+# Plot the route on the map as a PolyLine
+folium.PolyLine(
+    locations=route,  # List of coordinates for the route
+    color="red",      # Line color
+    weight=5,          # Line thickness
+    opacity=0.7        # Line opacity
+).add_to(m)
+
+# Home
+with open('home.gpx', 'r') as f:
+    gpx_data = f.read()
+
+# Parse the GPX data
+gpx = gpxpy.parse(gpx_data)
+first_track = gpx.tracks[0]
+first_segment = first_track.segments[0]
+first_point = first_segment.points[0]
+
+# Extract the coordinates from the GPX file and plot the route
+route = []
+for point in first_segment.points:
+    route.append([point.latitude, point.longitude])
+
+# Plot the route on the map as a PolyLine
+folium.PolyLine(
+    locations=route,  # List of coordinates for the route
+    color="black",      # Line color
+    weight=5,          # Line thickness
+    opacity=0.7        # Line opacity
+).add_to(m)
 
 # Save or display the map
 m.save('index.html')
