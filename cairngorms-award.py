@@ -42,7 +42,7 @@ for summit_code in summit_codes:
 activations_df = pd.DataFrame(activation_data)
 
 # Save all data to csv
-activations_df.to_csv('cairngorms_awards_alldata.csv', index=False)
+#activations_df.to_csv('cairngorms_awards_alldata.csv', index=False)
 
 # Count the number of summits activated by each callsign
 activations_summary = activations_df.groupby('UserId')['summitCode'].nunique().reset_index()
@@ -95,6 +95,7 @@ def get_remaining_summits(user_id):
     return [
         {
             'summitCode': summit_code,
+            'summitname': summits_df[summits_df['summitCode'] == summit_code]['name'].values[0],
             'latitude': summits_df[summits_df['summitCode'] == summit_code]['latitude'].values[0],
             'longitude': summits_df[summits_df['summitCode'] == summit_code]['longitude'].values[0],
             'points': summits_df[summits_df['summitCode'] == summit_code]['points'].values[0]
