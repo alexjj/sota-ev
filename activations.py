@@ -20,14 +20,16 @@ for summit in summits:
             activation_data.append({
                 "summit": summit,
                 "date": activation["activationDate"],
-                "callsign": activation["ownCallsign"]  # Added callsign to data
+                "callsign": activation["ownCallsign"]
             })
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data for {summit}: {e}")
+    time.sleep(0.5)
 
 
 # Create DataFrame
 df = pd.DataFrame(activation_data)
+df.to_csv("raw_data.csv", index=False)
 
 # Count activations per day and collect summits
 day_summits = df.groupby("date").agg({"summit": list, "callsign": "count"}).reset_index()
