@@ -24,7 +24,7 @@ for summit in summits:
             })
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data for {summit}: {e}")
-    time.sleep(0.5)
+    time.sleep(10)
 
 
 # Create DataFrame
