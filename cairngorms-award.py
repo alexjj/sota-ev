@@ -68,7 +68,7 @@ activations_summary['Award'] = activations_summary.apply(assign_awards, axis=1)
 # Determine the date each callsign achieved their award
 def get_award_date(user_id, required_summits):
     activations = activations_df[activations_df['UserId'] == user_id]
-    activations = activations.sort_values('ActivationDate')
+    activations = activations.sort_values('ActivationDate', ascending=False)
     unique_summits = set()
     for _, row in activations.iterrows():
         unique_summits.add(row['summitCode'])
